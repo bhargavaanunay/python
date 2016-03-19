@@ -1,2 +1,4 @@
-# python
-Daily use python scripts
+# Daily use python scripts
+
+Script includes:
+  1. DB Compare script
