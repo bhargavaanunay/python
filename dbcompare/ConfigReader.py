@@ -1,24 +1,26 @@
-from collections import defaultdict
+import json
 
 class ConfigReader:
     """Reads db compare config from file"""
 
-    def __init__(self, linedelim):
-        self.__linedelim__ = linedelim
+    def __init__(self, key, splitKey):
+        self.__key__ = key
+        self.__splitKey__ = splitKey
 
-    def readConfigFile(self, absfilepath):
+    def getConfigMap(self, absfilepath):
         """Read config file and generate SQL/KEY Map"""
 
         with open(absfilepath, 'r') as config:
-            lines = config.read().splitlines()
-        return self.__generateMap__(lines)
+            data = json.load(config)
+        self.__enhance__(data)
+
+        return data
 
 
-    def __generateMap__(self, lines):
-        """Generate 2-D Array , x=sno, y=SQL/KEY"""
+    def __enhance__(self, data):
+        """Split keys into list"""
 
-        d = defaultdict(dict)
-        for line in lines:
-            cfg = line.split(self.__linedelim__)
-            d[cfg[0]][cfg[1]] = cfg[2]
-        return d
+        for key in data.keys():
+            if data[key].has_key(self.__key__):
+                data[key][self.__key__] = data[key][self.__key__].split(self.__splitKey__)
+
