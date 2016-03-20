@@ -1,6 +1,10 @@
 {
     "0": {
-        "SQL": "select * from abc",
-        "KEYS": "A,B,C"
+        "srcdb": "mysql",
+        "desdb": "mysql",
+        "srcsql": "select * from abc",
+        "dessql": "select * from xyz",
+        "srckeys": "A,B,C",
+        "deskeys": "X,Y,Z"
     }
 }
