@@ -3,9 +3,6 @@ app.controller('MainCtrl',  ['$scope', '$http', '$timeout', '$interval', functio
 
   $scope.tabs = {selectedTab:-1};
   $scope.gridOptions = {};
-  $scope.gridOptions.data = 'myData';
-  
-
   $scope.gridOptions.columnDefs = %%headers%%;
 
   // [
@@ -17,6 +14,10 @@ app.controller('MainCtrl',  ['$scope', '$http', '$timeout', '$interval', functio
 
   $scope.gridOptions.enableCellEditOnFocus = true;
 
-  $scope.myData = %%data%%;
+  $scope.gridOptions.data = %%data%%;
+  // $http.get(%%location%%)
+  //   .success(function(data) {
+  //     $scope.gridOptions.data = data;
+  //   });
   
 }]);

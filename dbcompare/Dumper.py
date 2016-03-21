@@ -10,7 +10,7 @@ class JSONDumper:
     def __jsondump__(self, keyheader, key, data):
         ret = {keyheader:key}
         for field in data:
-            ret[field[0]] = "||".join(field[1:])
+            ret[field[0]] = "||".join(map(str,field[1:]))
         return dumps(ret)
 
     
@@ -31,7 +31,7 @@ class Dumper:
         keys = sorted(data.keys(), key=lambda k: len(data[k]), reverse=True)
         out = []
         for key in keys:
-            out.extend([key+","+",".join(field) for field in data[key]])
+            out.extend([key+","+",".join(map(str,field)) for field in data[key]])
         
         csvoutput = "\n".join(out)
         
